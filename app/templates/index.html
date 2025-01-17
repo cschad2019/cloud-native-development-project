@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Display Image</title>
+</head>
+<body>
+    <h1>Upload and Display Your Image</h1>
+    
+    <!-- Upload Form -->
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <div>
+            <label for="file">Choose an image to upload:</label>
+            <input type="file" id="file" name="form_file" accept="image/*" required />
+        </div>
+        <div>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+
+    <!-- Display Uploaded Image -->
+    <div>
+        <h2>Uploaded Image:</h2>
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 300px;" />
+        {% else %}
+            <p>No image uploaded yet.</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <a href="/previous_uploads">View Previously Uploaded Images</a>
+    </div>
+</body>
+</html>
