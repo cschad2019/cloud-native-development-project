@@ -4,22 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previously Uploaded Images</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #a8d0e6, #d5a6e3);
+            overflow: hidden;
+            color: #333;
+            position: relative;
+        }
+
+        /* Static Clouds */
+        .cloud {
+            position: absolute;
+            background: url('/static/cartoon_cloud.png') no-repeat;
+            background-size: contain;
+            opacity: 0.9;
+        }
+
+        /* Cloud Placement */
+        .cloud:nth-child(1) { top: 5%; left: 10%; width: 100px; height: 70px; }
+        .cloud:nth-child(2) { top: 8%; left: 75%; width: 120px; height: 80px; }
+        .cloud:nth-child(3) { top: 12%; left: 30%; width: 80px; height: 60px; }
+        .cloud:nth-child(4) { top: 20%; left: 5%; width: 90px; height: 70px; }
+        .cloud:nth-child(5) { top: 25%; left: 85%; width: 150px; height: 100px; }
+        .cloud:nth-child(6) { top: 35%; left: 20%; width: 110px; height: 75px; }
+        .cloud:nth-child(7) { top: 50%; left: 5%; width: 120px; height: 90px; }
+        .cloud:nth-child(8) { top: 55%; left: 80%; width: 130px; height: 100px; }
+        .cloud:nth-child(9) { top: 75%; left: 20%; width: 100px; height: 70px; }
+        .cloud:nth-child(10) { top: 80%; left: 70%; width: 140px; height: 90px; }
+        .cloud:nth-child(11) { top: 90%; left: 35%; width: 90px; height: 60px; }
+        .cloud:nth-child(12) { top: 95%; left: 80%; width: 100px; height: 65px; }
+
+        /* Page Title */
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            background-color: #a8d0e6;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Grid for Images */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 90%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Individual Image Item */
+        .image-item {
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #6c63ff;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .image-item img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 10px;
+        }
+
+        .image-item p {
+            margin: 10px 0 5px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .image-item a {
+            display: inline-block;
+            background-color: #6c63ff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .image-item a:hover {
+            background-color: #5a54d2;
+        }
+
+        /* Back Button */
+        .back-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6c63ff;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-link:hover {
+            background-color: #5a54d2;
+        }
+    </style>
 </head>
 <body>
+    <!-- Clouds -->
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+
+    <!-- Page Title -->
     <h1>Previously Uploaded Images</h1>
     
-    <ul>
+    <!-- Grid of Images -->
+    <div class="image-grid">
         {% for file in files %}
-            <li>
-                <a href="/files/{{ file }}">{{ file }}</a>
-            </li>
+        <div class="image-item">
+            <img src="/files/{{ file }}" alt="{{ file }}">
+            <p>{{ file }}</p>
+            <a href="/files/{{ file }}" download>Download</a>
+        </div>
         {% else %}
-            <p>No uploaded images found.</p>
+        <p>No uploaded images found.</p>
         {% endfor %}
-    </ul>
-
-    <div>
-        <a href="/">Go Back to Upload Page</a>
     </div>
+
+    <!-- Back to Upload Page Button -->
+    <a href="/" class="back-link">Go Back to Upload Page</a>
 </body>
 </html>
